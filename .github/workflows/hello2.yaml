@@ -19,3 +19,12 @@ jobs:
         Start-Sleep -Seconds 960
         echo "Bye"
         
+    - name: Sync Changes to Cluster Branch
+      run: |
+        git checkout main
+        git fetch origin
+        git checkout ${{ vars.branch }}
+        git pull || { echo 'Failed to pull'; exit 1; }
+        git merge origin/main || { echo 'Merge conflict occurred'; exit 1; }
+        git push origin ${{ vars.REGRESSION_CLUSTER_BRANCH_NAME }} || { echo 'Failed to push'; exit 1; }
+        
