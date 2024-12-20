@@ -12,6 +12,11 @@ jobs:
     runs-on: [Self-hosted, Windows, X64]
     
     steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history for all branches
+
     - name: Print message
       run: |
         Write-Host "Hello world"
@@ -26,4 +31,4 @@ jobs:
         git checkout ${{ vars.BRANCH }}
         git pull
         git merge origin/main
-        git push origin ${{ vars.REGRESSION_CLUSTER_BRANCH_NAME }}
+        git push origin 
