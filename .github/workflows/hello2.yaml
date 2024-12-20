@@ -23,31 +23,7 @@ jobs:
       run: |
         git checkout main
         git fetch origin
-        
-        # Check if the BRANCH variable is set
-        if (-not ${{ vars.BRANCH }}) {
-          Write-Host "Error: BRANCH variable is not set."
-          exit 1
-        }
-        
         git checkout ${{ vars.BRANCH }}
-        
-        # Pull changes from the remote branch
-        if (-not (git pull)) {
-          Write-Host "Failed to pull from origin/${{ vars.BRANCH }}"
-          exit 1
-        }
-        
-        # Merge changes from main into the current branch
-        $mergeResult = git merge origin/main
-        
-        if ($mergeResult -eq $null) {
-          Write-Host "Merge conflict occurred."
-          exit 1
-        }
-        
-        # Push changes back to the remote branch
-        if (-not (git push origin ${{ vars.REGRESSION_CLUSTER_BRANCH_NAME }})) {
-          Write-Host "Failed to push to origin/${{ vars.REGRESSION_CLUSTER_BRANCH_NAME }}"
-          exit 1
-        }
+        git pull
+        git merge origin/main
+        git push origin ${{ vars.REGRESSION_CLUSTER_BRANCH_NAME }}
