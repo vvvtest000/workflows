@@ -16,7 +16,7 @@ jobs:
       run: |
         echo "Hello world"
         echo "$env:GITHUB_RUN_ID"
-        Start-Sleep -Seconds 960
+        Start-Sleep -Seconds 2
         echo "Bye"
         
     - name: Sync Changes to Cluster Branch
