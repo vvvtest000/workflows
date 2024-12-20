@@ -23,7 +23,7 @@ jobs:
       run: |
         git checkout main
         git fetch origin
-        git checkout ${{ vars.branch }}
+        git checkout ${{ vars.BRANCH }}
         git pull || { echo 'Failed to pull'; exit 1; }
         git merge origin/main || { echo 'Merge conflict occurred'; exit 1; }
         git push origin ${{ vars.REGRESSION_CLUSTER_BRANCH_NAME }} || { echo 'Failed to push'; exit 1; }
