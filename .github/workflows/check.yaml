@@ -16,7 +16,7 @@ jobs:
       - name: Run Verify CODEOWNERS Approval Action
         uses: VishalViswanathan03/verify-codeowners-approval@main
         with:
-          github_token: "MOCK_GITHUB_TOKEN"    # For testing purposes only
+          github_token: ${{ secrets.TOKEN }}    # For testing purposes only
           codeowners_file: ".github/CODEOWNERS" # Default is already .github/CODEOWNERS
           pr_number: ${{ github.event.pull_request.number }}
           min_approval: 1
