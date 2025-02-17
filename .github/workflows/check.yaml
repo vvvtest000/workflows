@@ -1,0 +1,22 @@
+name: Test Verify CODEOWNERS Approval
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Verify CODEOWNERS Approval Action
+        uses: VishalViswanathan03/verify-codeowners-approval@main
+        with:
+          github_token: "MOCK_GITHUB_TOKEN"    # For testing purposes only
+          codeowners_file: ".github/CODEOWNERS" # Default is already .github/CODEOWNERS
+          pr_number: ${{ github.event.pull_request.number }}
+          min_approval: 1
